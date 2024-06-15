@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #magical-text {
+            font-size: 2em;
+            color: #ffffff;
+            display: inline-block;
+        }
+
+        #magical-text span {
+            display: inline-block;
+            animation: letterEffect 5s infinite, fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes letterEffect {
+            0%, 100% {
+                color: #ffffff;
+                transform: scale(1) rotate(0deg);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                opacity: 1;
+            }
+            25% {
+                color: #ff007f;
+                transform: scale(1.2) rotate(10deg);
+                text-shadow: 0 0 20px rgba(255, 0, 127, 0.7);
+                opacity: 1;
+            }
+            50% {
+                color: #7f00ff;
+                transform: scale(1.4) rotate(-10deg);
+                text-shadow: 0 0 30px rgba(127, 0, 255, 0.9);
+                opacity: 1;
+            }
+            75% {
+                color: #00ffff;
+                transform: scale(1.2) rotate(10deg);
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="magical-text">Pranay Kachari jyada mat hilao warna hijda ban jaoge </h1>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const text = document.getElementById('magical-text');
+            const textContent = text.textContent;
+            text.textContent = '';
+
+            textContent.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    span.style.marginRight = '0.5em';  // Add margin for spaces
+                }
+                span.textContent = char;
+                span.style.animationDelay = `${index * 0.1}s`;
+                text.appendChild(span);
+            });
+        });
+    </script>
+</body>
+</html>
